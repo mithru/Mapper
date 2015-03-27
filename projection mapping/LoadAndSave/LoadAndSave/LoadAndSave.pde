@@ -10,13 +10,14 @@ int surface_id = 0;
 int curr_mode = LIVE;
 
 void setup() {
-  size(800, 600, P2D);
+  size(displayWidth, displayHeight, P2D);
   loadSVGs();
+  noStroke();
 }
 
 void draw() {
 
-  background(0);
+  background(255);
 
   for (int i = 0; i < surfaces.size(); i++) {
     Surface surface = surfaces.get(i);
@@ -26,7 +27,7 @@ void draw() {
       println("live");
       break;
     case EDIT:
-      println("edit mode..zzz");
+      println("edit mode");
       surface.editVertices();
       break;
     }
@@ -36,5 +37,26 @@ void draw() {
 void randomiseColors() {
   for (Surface surface : surfaces) 
     surface.setColor(color(int(random(255)),int(random(255)),int(random(255))));
+}
+
+
+float threshold = 15;
+void addSurface() {
+  float side = threshold * 2;
+  float h = side/2 * sqrt(3);
+  float hc = h/3;
+  s = createShape();
+  s.beginShape();
+  s.vertex(mouseX, mouseY - h + hc);
+  s.vertex(mouseX - side/2, mouseY + hc);
+  s.vertex(mouseX + side/2, mouseY + hc);
+  s.fill(127, 0, 0);
+  s.noStroke();
+  s.endShape(CLOSE);  
+  surfaces.add(new Surface(surface_id++, s));
+}
+
+void removeSurface(int i){
+  surfaces.remove(i);
 }
 

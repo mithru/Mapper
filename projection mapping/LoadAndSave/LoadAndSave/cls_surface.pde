@@ -12,6 +12,8 @@ class Surface {
 
   void display() {
     surface.setFill(col);
+
+    surface.noStroke();
     shape(surface, 0, 0);
   }
 
@@ -23,9 +25,9 @@ class Surface {
     mode = m;
   }
 
- 
+
   void editVertices() {
-    for (int i = 0; i < surface.getVertexCount(); i++) {
+    for (int i = 0; i < surface.getVertexCount (); i++) {
       PVector v = surface.getVertex(i);
       if (dist(v.x, v.y, mouseX, mouseY) < threshold) {
         ellipse(v.x, v.y, threshold, threshold);
