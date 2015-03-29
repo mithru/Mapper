@@ -17,13 +17,17 @@ void setup() {
 
 void draw() {
 
-  background(255);
+  background(0);
+  
+  textSize(32);
+  text("Hello Mithru... Sunday afternoon.. Feeling good on a Wednesday.. Ya ya ya.. I am Lorde.", mouseX, mouseY);
 
   for (int i = 0; i < surfaces.size(); i++) {
     Surface surface = surfaces.get(i);
     surface.display();
     switch(curr_mode) {
     case LIVE:
+      animation();
       println("live");
       break;
     case EDIT:
@@ -36,7 +40,7 @@ void draw() {
 
 void randomiseColors() {
   for (Surface surface : surfaces) 
-    surface.setColor(color(int(random(255)),int(random(255)),int(random(255))));
+    surface.setColor(color(int(random(0)), int(random(50,155)), int(random(10))));
 }
 
 
@@ -56,7 +60,13 @@ void addSurface() {
   surfaces.add(new Surface(surface_id++, s));
 }
 
-void removeSurface(int i){
+void removeSurface(int i) {
   surfaces.remove(i);
+}
+
+
+void animation() {
+  randomiseColors();
+  delay(10);
 }
 
