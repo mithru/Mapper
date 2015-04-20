@@ -1,3 +1,4 @@
+boolean grid = false;
 
 void keyReleased() {
   switch(key) {
@@ -18,11 +19,19 @@ void keyReleased() {
     saveSVGs();
     exit();
     break;
+  case 'c':
+    color_mode++;
+    color_mode = color_mode%3;
+    exit();
+    break;
   case 'r':
     randomiseColors();
     break;
   case 'd':
     removeSurface(surfaces.size()-1);
+    break;
+  case 'g':
+    grid = !grid;
     break;
   }
 }
